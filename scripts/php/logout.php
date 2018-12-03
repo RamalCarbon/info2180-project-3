@@ -3,5 +3,8 @@
     session_regenerate_id(true);
     session_cache_expire();
     session_destroy();
-    header('location: login.html');
+    unset($_SESSION['SESS_EMAIL']);
+	unset($_SESSION['SESS_USERID']);
+	unset($_SESSION['SESS_PASS']);
+    header('location: ../../login.html');
 ?>

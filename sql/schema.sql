@@ -12,7 +12,7 @@ CREATE TABLE Users (
     email VARCHAR (64),
     telephone VARCHAR(15), -- phone numbers can have up to 15 digits
     date_joined DATE 
-)ENGINE=MyISAM AUTO_INCREMENT=4080 DEFAULT CHARSET=utf8;
+);
  
     
 CREATE TABLE Jobs (
@@ -22,15 +22,14 @@ CREATE TABLE Jobs (
     category VARCHAR(32) DEFAULT NULL,
     company_name VARCHAR(32) DEFAULT NULL,
     company_location DATE DEFAULT NULL
-)ENGINE=MyISAM AUTO_INCREMENT=4080 DEFAULT CHARSET=utf8;
+);
 
 CREATE TABLE Applied (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     job_id INT DEFAULT NULL,
     user_id INT DEFAULT NULL,
     date_applied DATE 
-)ENGINE=MyISAM AUTO_INCREMENT=4080 DEFAULT CHARSET=utf8;
+);
 
 -- insert an admin user
-INSERT INTO Users (email, password) VALUES ('admin@hireme.com', 'password123');
-
+INSERT INTO Users (email, password) VALUES ('admin@hireme.com', MD5('password123'));

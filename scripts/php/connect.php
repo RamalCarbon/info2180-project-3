@@ -1,10 +1,18 @@
 <?php
 
-	$servername = getenv('IP'); 
+	$servername = 'localhost'; 
 	$dbname = 'Jobs';
-	$dbusername = getenv('C9_USER');
+	$dbusername = 'root';
 	$dbpassword = ''; 
 	
-	$conn = new PDO ("mysql:host=$servername;dbname=$dbname", $db_u_name, $db_password);
-	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	try{
+		
+		$conn = new PDO ("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		
+	}catch(PDOException $e){
+		
+		die($e->getMessage());
+	}
+	
 ?>
