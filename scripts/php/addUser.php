@@ -1,10 +1,10 @@
 <?php
+
     if ($_SERVER["REQUEST_METHOD"] == "POST"){ 
         include('connect.php');
         
         $password="";
         $salt = mt_rand();
-        $fname = $lname = $uname = $pword = "";
         
         $fname = nameFilter($_POST['fname']);
     	$lname = nameFilter($_POST['lname']);
@@ -15,7 +15,7 @@
     	$password = md5($pword);
     	$pword = "";
     	
-    	if (empty($fname) || empty($lname) || empty($uname) || empty($password)){
+    	if (empty($fname) || empty($lname) || empty($email) || empty($password) || empty($tele)){
     		echo "Empty fields where detected, the database will not be updated";
     	}else{ 
     		try{
@@ -31,6 +31,7 @@
     		}
     		$conn = null;
     	}
+    }
     	
     	function generalFilter($input){
     	    
@@ -49,7 +50,7 @@
     			$input = generalFilter($input);
     			return $input;
     		}
-    	    	return '';
+    	    return '';
         }
         
         function pwordFilter($input){
@@ -58,7 +59,7 @@
     		echo "An empty password error occurred";
     		return '';
     		
-    		}else if(!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/', $$input)){
+    		}else if(!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $input)){
     			echo "A password matching error occurred";
     			return '';
     		}else{
@@ -89,7 +90,7 @@
     			echo "An telephone error occurred";
     			return '';
     		
-    		}else if(!preg_match('/^(\d{3}-\d{3}-\d{4})/', $$input)){
+    		}else if(!(preg_match('/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/', $input))){
         		echo "A telephone matching error occurred";
         		return '';
     		
@@ -101,6 +102,5 @@
         }
         
         
-    }
 ?>
 			

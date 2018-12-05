@@ -21,7 +21,8 @@ CREATE TABLE Jobs (
     job_description VARCHAR(32) DEFAULT NULL,
     category VARCHAR(32) DEFAULT NULL,
     company_name VARCHAR(32) DEFAULT NULL,
-    company_location DATE DEFAULT NULL
+    company_location VARCHAR(32) DEFAULT NULL,
+    date_posted DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL NO_ZERO_DATE
 );
 
 CREATE TABLE Applied (

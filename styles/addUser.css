@@ -1,9 +1,15 @@
+body{
+    font-family: Verdana;
+   
+}
+
+
 .sidebar {
-    padding-left:12px;
+    padding-left:20px;
     grid-area: sidebar;
     background-color: lavender;
     border-radius:5%;
-    
+    width: 150px;
 }
 
 .content {
@@ -12,6 +18,8 @@
     position: relative;
     background-color: #C0C0C0;
     padding-left:5%;
+    grid-template-columns:1000px;
+    height:550px;
 }
 
 .header {
@@ -19,12 +27,17 @@
     grid-area: header;
     background-color: black;
     padding-left:5%;
+    grid-column: 1/span 3;
+    grid-row: 1;
+    height: 100px;
 }
 
 .wrapper {
     display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 200px 200px 200px;
+    grid-gap: 5px;
+    grid-template-columns: auto minmax(min-content, 1fr);
+    grid-template-rows: auto minmax(min-content, 1fr) auto;
+    
     height:100%;
     grid-template-areas:
     "header  header  header"
@@ -42,5 +55,10 @@
 
 .ssubmit{
     background-color:steelblue;
-    width:;
+    width:100px;
+
+}
+
+input{
+    width:300px;
 }

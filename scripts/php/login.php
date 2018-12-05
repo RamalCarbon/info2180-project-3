@@ -1,7 +1,5 @@
 <?php
 /*checks for post request along with login variables. Sets sesssion variable with */
-    session_start();
-	include('connect.php'); 
     
     if ($_SERVER["REQUEST_METHOD"] == "POST"){ 
     	session_start();
@@ -14,7 +12,7 @@
 			$pword = pwordFilter($_POST['password']);	
 			if ($email === "" || $pword === ""){
 				session_destroy();
-				include_once('../../login.html');
+				header("Location ../../login.html");
 			}
 	        
 	        $password = md5($pword);
@@ -22,26 +20,27 @@
 	        $stmt = $conn->prepare("SELECT * FROM Users WHERE email = '$email' AND password = '$password'");
 			
 			$stmt->execute();
+			
 		
 			$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	        
-	        if ($result['email']==$email && $result['password']==$password){
+	        if ($results[0]['email']==$email && $results[0]['password']==$password){
 		    	session_regenerate_id();
 				echo "User verified";
-				$_SESSION['SESS_EMAIL'] = $result['email'];
-				$_SESSION['SESS_USERID'] = $result['id'];
-				$_SESSION['SESS_PASS'] = $result['password'];
-				die("email:".$_SESSION['SESS_EMAIL']."id:". $_SESSION['SESS_USERID']." password: ". $_SESSION['SESS_PASS'] );
+				$_SESSION['SESS_EMAIL'] = $results[0]['email'];
+				$_SESSION['SESS_USERID'] = $results[0]['id'];
+				$_SESSION['SESS_PASS'] = $results[0]['password'];
 				session_write_close();
 				header("Location: homescreen.php");
 				
 	        }else{
 				echo "A username or password error prevented login, try again.";
 				session_destroy();
-				include_once('../../login.html');
+				header("Location: ../../login.html");
 			}
         
     	}
+    	$conn=null;
     }
     
     //Filtering and Sanitizing the variables
