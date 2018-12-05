@@ -48,7 +48,7 @@
 				    <br/><br/>
 				    
 				    <label for = "category">Category</label><br/>
-				    <select id = "category"> 
+				    <select id = "category" name = "category"> 
 				        <option value = "" disabled selected> Select a Category</option>
 				        <option value ="1">Design</option>
 				        <option value = "2"> Programming</option>

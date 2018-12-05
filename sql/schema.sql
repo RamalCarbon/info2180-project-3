@@ -11,7 +11,7 @@ CREATE TABLE Users (
     password VARCHAR (64),
     email VARCHAR (64),
     telephone VARCHAR(15), -- phone numbers can have up to 15 digits
-    date_joined DATE 
+    date_joined TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
  
     
@@ -21,15 +21,15 @@ CREATE TABLE Jobs (
     job_description VARCHAR(32) DEFAULT NULL,
     category VARCHAR(32) DEFAULT NULL,
     company_name VARCHAR(32) DEFAULT NULL,
-    company_location VARCHAR(32) DEFAULT NULL,
-    date_posted DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL NO_ZERO_DATE
+    company_location VARCHAR(80) DEFAULT NULL,
+    date_posted TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE Applied (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     job_id INT DEFAULT NULL,
     user_id INT DEFAULT NULL,
-    date_applied DATE 
+    date_applied TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
 );
 
 -- insert an admin user

@@ -22,6 +22,7 @@
                 $sql = "INSERT INTO Users (firstname, lastname, password, email, telephone ) VALUES ('$fname', '$lname', '$password', '$email', '$tele')";
     			$conn->exec($sql);
     			echo ("Data recorded successfully \n");
+    			header("Location homescreen");
     			
     		}catch(PDOException $e){
     		    

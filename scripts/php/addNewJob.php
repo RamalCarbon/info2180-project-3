@@ -1,6 +1,6 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST"){ 
-        include('../scripts/php/connect.php');
+        include('connect.php');
         
         $salt = mt_rand();
         
@@ -10,6 +10,7 @@
         $comp = generalFilter($_POST['comp']);
         $location = generalFilter($_POST['location']);
         
+        
         if (empty($title) || empty($description) || empty($category) || empty($comp) || empty($location)){
     		echo "Empty fields were detected, the database will not be updated";
     	}else{ 
@@ -17,6 +18,7 @@
                 $sql = "INSERT INTO Jobs (job_title, job_description, category, company_name, company_location ) VALUES ('$title', '$description', '$category', '$comp', '$location')";
     			$conn->exec($sql);
     			echo ("Data recorded successfully \n");
+    			header("Location homescreen.php");
     			
     		}catch(PDOException $e){
     		    
@@ -52,7 +54,7 @@
         if ($input === "4"){
             return "Customer Support";
         }
-        
+
         if ($input === "5"){
             return "Sales & Marketing";
         }
